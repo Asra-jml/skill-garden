@@ -1,0 +1,16 @@
+{
+  "name": "lms-full-stack",
+  "version": "1.0.0",
+  "scripts": {
+    "client": "npm --prefix client run dev",
+    "server": "npm --prefix server start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "prop-types": "^15.8.1",
+    "swiper": "^11.2.10"
+  }
+}

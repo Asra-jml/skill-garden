@@ -41,38 +41,52 @@ const Navbar = () => {
   }
 
   return (
-    <div className={`flex items-center justify-between px-4 sm:px-10 md:px-14 lg:px-36 border-b border-gray-500 py-4 ${isCoursesListPage ? 'bg-white' : 'bg-cyan-100/70'}`}>
-      <img onClick={() => navigate('/')} src={assets.logo} alt="Logo" className="w-28 lg:w-32 cursor-pointer" />
-      <div className="md:flex hidden items-center gap-5 text-gray-500">
-        <div className="flex items-center gap-5">
-          {
-            user && <>
-              <button onClick={becomeEducator}>{isEducator ? 'Educator Dashboard' : 'Become Educator'}</button>
-              | <Link to='/my-enrollments' >My Enrollments</Link>
-            </>
-          }
-        </div>
-        {user
-          ? <UserButton />
-          : <button onClick={() => openSignIn()} className="bg-blue-600 text-white px-5 py-2 rounded-full">
-            Create Account
-          </button>}
+    <div className={`flex items-center justify-between px-4 sm:px-10 md:px-14 lg:px-36 border-b py-4 transition-all duration-300 ${isCoursesListPage ? 'bg-black border-gray-800 text-gray-200' : 'bg-black border-gray-800'}`}>
+  <img onClick={() => navigate('/')} src='' alt="Logo" className="w-28 lg:w-32 cursor-pointer" />
+
+  {/* Desktop Nav */}
+  <div className="md:flex hidden items-center gap-6 text-gray-200">
+    {user && (
+      <div className="flex items-center gap-5">
+        <button onClick={becomeEducator} className="hover:text-teal-400 transition">
+          {isEducator ? 'Educator Dashboard' : 'Become Educator'}
+        </button>
+        <span className="text-gray-500">|</span>
+        <Link to="/my-enrollments" className="hover:text-teal-400 transition">My Enrollments</Link>
       </div>
-      {/* For Phone Screens */}
-      <div className='md:hidden flex items-center gap-2 sm:gap-5 text-gray-500'>
-        <div className="flex items-center gap-1 sm:gap-2 max-sm:text-xs">
-          <button onClick={becomeEducator}>{isEducator ? 'Educator Dashboard' : 'Become Educator'}</button>
-          | {
-            user && <Link to='/my-enrollments' >My Enrollments</Link>
-          }
-        </div>
-        {user
-          ? <UserButton />
-          : <button onClick={() => openSignIn()}>
-            <img src={assets.user_icon} alt="" />
-          </button>}
-      </div>
+    )}
+    {user ? (
+      <UserButton />
+    ) : (
+      <button onClick={() => openSignIn()} className="bg-teal-500 hover:bg-teal-600 text-white px-5 py-2 rounded-full transition">
+        Create Account
+      </button>
+    )}
+  </div>
+
+  {/* Mobile Nav */}
+  <div className="md:hidden flex items-center gap-2 sm:gap-4 text-gray-200">
+    <div className="flex items-center gap-1 sm:gap-2 text-sm">
+      <button onClick={becomeEducator} className="hover:text-teal-400 transition">
+        {isEducator ? 'Dashboard' : 'Become Educator'}
+      </button>
+      {user && (
+        <>
+          <span className="text-gray-500">|</span>
+          <Link to="/my-enrollments" className="hover:text-teal-400 transition">Enrollments</Link>
+        </>
+      )}
     </div>
+    {user ? (
+      <UserButton />
+    ) : (
+      <button onClick={() => openSignIn()}>
+        <img src={assets.user_icon} alt="user" className="w-6 h-6" />
+      </button>
+    )}
+  </div>
+</div>
+
   );
 };
 

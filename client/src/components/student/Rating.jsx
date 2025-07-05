@@ -16,20 +16,21 @@ const Rating = ({ initialRating, onRate }) => {
     }, [initialRating]);
 
     return (
-        <div className="flex gap-2">
-            {Array.from({ length: 5 }, (_, index) => {
-                const starValue = index + 1;
-                return (
-                    <span
-                        key={index}
-                        className={`text-xl sm:text-2xl cursor-pointer transition-colors ${starValue <= rating ? 'text-yellow-500' : 'text-gray-400'}`}
-                        onClick={() => handleRating(starValue)}
-                    >
-                        &#9733;
-                    </span>
-                );
-            })}
-        </div>
+        <div className="flex gap-2 bg-black p-2 rounded-md">
+  {Array.from({ length: 5 }, (_, index) => {
+    const starValue = index + 1;
+    return (
+      <span
+        key={index}
+        onClick={() => handleRating(starValue)}
+        className={`text-xl sm:text-2xl cursor-pointer transition-colors duration-200 
+          ${starValue <= rating ? 'text-yellow-400' : 'text-gray-600 hover:text-teal-400'}`}
+      >
+        &#9733;
+      </span>
+    );
+  })}
+</div>
     );
 };
 

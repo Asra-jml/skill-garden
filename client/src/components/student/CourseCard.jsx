@@ -5,7 +5,7 @@ import { AppContext } from '../../context/AppContext'
 
 const CourseCard = ({ course }) => {
 
-    const { currency, calculateRating } = useContext(AppContext)
+    const { calculateRating } = useContext(AppContext)
 
     return (
         <Link onClick={() => scrollTo(0, 0)} to={'/course/' + course._id} className="border border-gray-500/30 pb-6 overflow-hidden rounded-lg">
@@ -27,7 +27,7 @@ const CourseCard = ({ course }) => {
                     </div>
                     <p className="text-gray-500">({course.courseRatings.length})</p>
                 </div>
-                <p className="text-base font-semibold text-gray-800">{currency}{(course.coursePrice - course.discount * course.coursePrice / 100).toFixed(2)}</p>
+                <p className="text-base font-semibold text-gray-800">₹ {(course.coursePrice - course.discount * course.coursePrice / 100).toFixed(2)}</p>
             </div>
         </Link>
     )
